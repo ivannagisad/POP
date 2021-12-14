@@ -62,11 +62,26 @@ struct Knight: GameUnit {
     init(name: String) {
         id = name
     }
-   
+    mutating func hitTaken() {
+        if healthLevel > 0 {
+            healthLevel-=1
+            if healthLevel == 0 {
+                isAlive = false
+            }
+        } else {
+            isAlive = false
+        }
+        let state = isAlive ? String(repeating: "♥️", count: healthLevel) : "🚀"
+        print("\(id): for the king \(state)")
+    }
 }
 
 var bishop = Bishop(name: "Xander")
+bishop.hitTaken()
 var soldier = Soldier(name: "Bean")
 soldier.hitTaken()
 soldier.hitTaken()
 soldier.hitTaken()
+var knight = Knight(name: "Lancelot")
+knight.hitTaken()
+knight.hitTaken()
