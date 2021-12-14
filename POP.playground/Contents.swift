@@ -1,3 +1,11 @@
 import UIKit
 
-var greeting = "Hello, playground"
+protocol GameUnit {
+
+    var id: String { get }
+    var isAlive : Bool { get set }
+    var healthLevel: Int { get set }
+    mutating func hitTaken()
+    
+}
+
