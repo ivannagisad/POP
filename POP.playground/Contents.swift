@@ -9,19 +9,8 @@ protocol GameUnit {
     
 }
 
-class Bishop: GameUnit {
-    var id: String
-    
-    var isAlive: Bool = true
-    
-    var healthLevel: Int = 2
-    
-    init(name: String) {
-        id = name
-    }
-    
-    func hitTaken() {
-        
+extension GameUnit {
+    mutating func hitTaken() {
         if healthLevel > 0 {
             healthLevel-=1
             if healthLevel == 0 {
@@ -33,6 +22,20 @@ class Bishop: GameUnit {
         let state = isAlive ? String(repeating: "♥️", count: healthLevel) : "🚀"
         print("\(id): Arghh! \(state)")
     }
+}
+
+
+class Bishop: GameUnit {
+    var id: String
+    
+    var isAlive: Bool = true
+    
+    var healthLevel: Int = 2
+    
+    init(name: String) {
+        id = name
+    }
+    
 }
 
 
@@ -46,22 +49,21 @@ struct Soldier: GameUnit {
     init(name: String) {
         id = name
     }
-    mutating func hitTaken() {
-        if healthLevel > 0 {
-            healthLevel-=1
-            if healthLevel == 0 {
-                isAlive = false
-            }
-        } else {
-            isAlive = false
-        }
-        let state = isAlive ? String(repeating: "♥️", count: healthLevel) : "🚀"
-        print("\(id): Arghh! \(state)")
-    }
-    
-    
+  
 }
 
+struct Knight: GameUnit {
+    var id: String
+    
+    var isAlive: Bool = true
+    
+    var healthLevel: Int = 5
+    
+    init(name: String) {
+        id = name
+    }
+   
+}
 
 var bishop = Bishop(name: "Xander")
 var soldier = Soldier(name: "Bean")
