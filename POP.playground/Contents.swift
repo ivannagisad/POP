@@ -9,3 +9,31 @@ protocol GameUnit {
     
 }
 
+class Bishop: GameUnit {
+    var id: String
+    
+    var isAlive: Bool = true
+    
+    var healthLevel: Int = 2
+    
+    init(name: String) {
+        id = name
+    }
+    
+    func hitTaken() {
+        
+        if healthLevel > 0 {
+            healthLevel-=1
+            if healthLevel == 0 {
+                isAlive = false
+            }
+        } else {
+            isAlive = false
+        }
+        let state = isAlive ? String(repeating: "♥️", count: healthLevel) : "🚀"
+        print("\(id): Arghh! \(state)")
+    }
+}
+
+var bishop = Bishop(name: "Xander")
+bishop.hitTaken()
